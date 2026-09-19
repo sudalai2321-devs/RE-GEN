@@ -1,0 +1,13 @@
+import Link from 'next/link';
+import { ArrowRight, Check, Database, FileSearch, GitBranch, ShieldCheck, Target, FlaskConical } from 'lucide-react';
+
+const steps=[
+ ['01','Collect','Gather documented projects, technologies, reports, research and problem statements.',Database],
+ ['02','Understand','Understand what the original innovation tried to achieve.',FileSearch],
+ ['03','Decode','Extract technologies, capabilities, inputs, outputs, constraints, dependencies, assumptions and failure conditions.',GitBranch],
+ ['04','Detect gap','Separate documented limitations from AI-derived opportunity hypotheses.',Target],
+ ['05','Discover','Match capabilities with documented real-world problems across domains.',ArrowRight],
+ ['06','Verify','Trace claims through evidence, source excerpts, confidence and verification status.',ShieldCheck],
+ ['07','Validate','Convert an opportunity into a measurable, testable experiment.',FlaskConical],
+];
+export default function How(){return <main className="content"><div className="section-head"><div><h1 className="page-title">How Innovation DNA works</h1><p className="page-subtitle">A seven-stage intelligence workflow that moves from documented innovation attempts toward evidence-linked opportunities and validation.</p></div><Link href="/analyze" className="btn primary">Start Analysis <ArrowRight size={14}/></Link></div><div className="card card-pad"><div className="pipeline">{steps.map(([n,t,_,Icon],i)=>{const C=Icon as React.ElementType; return <div key={n as string} className={`pipeline-step ${i===2?'active':''}`}><div className="pipeline-num">{n as string}</div><div className="pipeline-name">{t as string}</div><div style={{marginTop:8,color:'#68727e'}}><C size={14}/></div></div>})}</div></div><div className="mt-6 grid grid-2">{steps.map(([n,t,d,Icon])=>{const C=Icon as React.ElementType;return <div className="card card-pad" key={n as string}><div style={{display:'flex',justifyContent:'space-between'}}><span className="status green">Stage {n as string}</span><C size={18} color="#c8ff54"/></div><h3 style={{fontSize:15,margin:'12px 0 6px'}}>{t as string}</h3><p style={{margin:0,color:'#7e8894',fontSize:11,lineHeight:1.7}}>{d as string}</p></div>})}</div><div className="mt-6 card card-pad"><div className="section-title">Anti-hallucination rule</div><div className="grid grid-3 mt-3">{['Every factual claim has evidence IDs.','Unsupported information becomes UNKNOWN or INSUFFICIENT EVIDENCE.','AI reasoning is explicitly labeled as analysis, not source-established fact.'].map(x=><div className="quick-link" key={x}><Check size={14} color="#c8ff54"/><span>{x}</span></div>)}</div></div></main>}
