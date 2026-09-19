@@ -58,8 +58,9 @@ export default function OpportunityExperimentPage() {
       const exp = await api.generateExperiment(id);
       setExperiment(exp);
       setStatus(exp.status || 'planned');
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
+      alert(err.message || 'Failed to generate validation protocol.');
     } finally {
       setGenerating(false);
     }
@@ -97,15 +98,15 @@ export default function OpportunityExperimentPage() {
       />
 
       {savedSuccess && (
-        <div className="p-4 bg-emerald-950/40 border border-emerald-800/60 rounded-xl text-xs text-emerald-300 flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+        <div className="p-4 bg-emerald-950/40 dark:bg-[#34C759]/15 border border-emerald-800/60 dark:border-[#34C759]/30 rounded-2xl text-xs text-emerald-300 dark:text-[#34C759] flex items-center gap-2">
+          <CheckCircle2 className="w-4 h-4 text-emerald-400 dark:text-[#34C759]" />
           <span>Experiment protocol and recorded results saved successfully!</span>
         </div>
       )}
 
       {!experiment ? (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-10 text-center space-y-4">
-          <div className="w-14 h-14 rounded-2xl bg-blue-950/60 text-blue-400 border border-blue-800/60 flex items-center justify-center mx-auto">
+        <div className="bg-slate-900/90 dark:bg-[#1C1C1E] border border-slate-800 dark:border-white/10 rounded-3xl p-10 text-center space-y-4">
+          <div className="w-14 h-14 rounded-2xl bg-blue-950/60 dark:bg-[#007AFF]/15 text-blue-400 dark:text-[#007AFF] border border-blue-800/60 dark:border-[#007AFF]/30 flex items-center justify-center mx-auto">
             <FlaskConical className="w-7 h-7" />
           </div>
           <h3 className="text-lg font-bold text-white">No Validation Protocol Generated Yet</h3>
@@ -116,7 +117,7 @@ export default function OpportunityExperimentPage() {
             <button
               onClick={handleGenerateExperiment}
               disabled={generating}
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold shadow flex items-center gap-2 mx-auto transition-colors disabled:opacity-50"
+              className="px-6 py-3 bg-[#007AFF] hover:bg-[#0071E3] text-white rounded-full text-xs font-semibold shadow-sm flex items-center gap-2 mx-auto active:scale-95 transition-all disabled:opacity-50"
             >
               {generating ? (
                 <>
@@ -135,9 +136,9 @@ export default function OpportunityExperimentPage() {
       ) : (
         <div className="space-y-6">
           {/* Main Experiment Card */}
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4 flex-wrap gap-2">
-              <span className="text-xs font-mono uppercase px-3 py-1 rounded-full bg-blue-950/60 text-blue-300 border border-blue-800/60 font-semibold flex items-center gap-1.5">
+          <div className="bg-slate-900/90 dark:bg-[#1C1C1E] border border-slate-800 dark:border-white/10 rounded-3xl p-6 sm:p-8 space-y-6">
+            <div className="flex items-center justify-between border-b border-slate-800 dark:border-white/10 pb-4 flex-wrap gap-2">
+              <span className="text-xs font-mono uppercase px-3 py-1 rounded-full bg-blue-950/60 dark:bg-[#007AFF]/15 text-blue-300 dark:text-[#007AFF] border border-blue-800/60 dark:border-[#007AFF]/30 font-semibold flex items-center gap-1.5">
                 <FlaskConical className="w-3.5 h-3.5" />
                 Formal Validation Protocol
               </span>
